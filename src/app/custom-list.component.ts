@@ -1,4 +1,5 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, forwardRef } from '@angular/core';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
   selector: 'custom-list',
@@ -9,20 +10,55 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
         {{ num }}
       </li>
     </ul>
-  `
+  `,
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => CustomListComponent),
+      multi: true
+    }
+  ]
 })
-export class CustomListComponent {
+export class CustomListComponent implements ControlValueAccessor {
+
+// #region fields
+
+  /** */
+  value: number = 0;
 
   /** 表示リスト */
   list: number[] = [1, 2, 3, 4, 5];
 
-  /** 選択値 */
-  @Input()
-  value: number = 0;
+  /** */
+  private fnChange = (_: any) => {};
 
-  /** 選択値変更 */
-  @Output()
-  valueChange = new EventEmitter<number>();
+  /** */
+  private fnTouched = () => {};
+
+// #endregion
+
+// #region methods
+
+  /**
+   *
+   * @param value
+   */
+  writeValue(value: any): void {
+      this.value = value || 0;
+  }
+
+  registerOnChange(fn: any): void {
+      this.fnChange = fn;
+  }
+
+  registerOnTouched(fn: any): void {
+      this.fnTouched = fn;
+  }
+
+  setDisabledState(isDisabled: boolean): void {
+
+  }
+
 
   /**
    * 選択値変更処理
@@ -30,6 +66,9 @@ export class CustomListComponent {
    */
   changeValue(num: number): void {
     this.value = num;
-    this.valueChange.emit(num);
+    this.fnChange(num);
   }
+
+// #endregion
+
 }
