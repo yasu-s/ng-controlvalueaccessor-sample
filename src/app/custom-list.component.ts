@@ -44,15 +44,15 @@ export class CustomListComponent implements ControlValueAccessor {
    * @param value
    */
   writeValue(value: any): void {
-      this.value = value || 0;
+    this.value = value ? value : 0;
   }
 
   registerOnChange(fn: any): void {
-      this.fnChange = fn;
+    this.fnChange = fn;
   }
 
   registerOnTouched(fn: any): void {
-      this.fnTouched = fn;
+    this.fnTouched = fn;
   }
 
   setDisabledState(isDisabled: boolean): void {
