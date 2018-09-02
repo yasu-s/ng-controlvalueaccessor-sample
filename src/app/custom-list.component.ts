@@ -23,16 +23,16 @@ export class CustomListComponent implements ControlValueAccessor {
 
 // #region fields
 
-  /** */
+  /** 選択値 */
   value: number = 0;
 
   /** 表示リスト */
   list: number[] = [1, 2, 3, 4, 5];
 
-  /** */
+  /** OnChange */
   private fnChange = (_: any) => {};
 
-  /** */
+  /** OnTouched */
   private fnTouched = () => {};
 
 // #endregion
@@ -40,25 +40,36 @@ export class CustomListComponent implements ControlValueAccessor {
 // #region methods
 
   /**
-   *
+   * ControlValueAccessor.writeValue
    * @param value
    */
   writeValue(value: any): void {
     this.value = value ? value : 0;
   }
 
+  /**
+   * ControlValueAccessor.registerOnChange
+   * @param fn
+   */
   registerOnChange(fn: any): void {
     this.fnChange = fn;
   }
 
+  /**
+   * ControlValueAccessor.registerOnTouched
+   * @param fn
+   */
   registerOnTouched(fn: any): void {
     this.fnTouched = fn;
   }
 
+  /**
+   * ControlValueAccessor.setDisabledState
+   * @param isDisabled
+   */
   setDisabledState(isDisabled: boolean): void {
 
   }
-
 
   /**
    * 選択値変更処理
