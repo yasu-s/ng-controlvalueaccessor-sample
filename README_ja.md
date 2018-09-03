@@ -1,43 +1,43 @@
-# Overview
+# 概要
 
-It is a sample that performs bi-directional binding when creating self-made components in Angular.  
-Using ControlValueAccessor.  
-  
-For bidirectional binding without using ngModel, please refer to the following repository.  
+Angularで自作コンポーネント作成時に双方向バインディングを行うサンプルです。  
+ControlValueAccessorを使用してngModelに対応したバージョンです。  
+
+ngModelを利用しない双方向バインディングについては以下のリポジトリを参照してください。  
 * https://github.com/yasu-s/ng-twoway-sample  
 
-# System requirements
+# 実行環境
 
 * Node.js 8.9.x
 * TypeScript 2.9.x
 * Angular 6.1.x
 
-# Operation check  
+# 動作確認  
 
-## 1. Download Sample
+## 1. サンプルのダウンロード
 
 ```
 git clone git@github.com:yasu-s/ng-controlvalueaccessor-sample.git
 ```
 
-## 2. Installing packages  
+## 2. パッケージインストール  
 
 ```
 cd ng-controlvalueaccessor-sample
 npm install
 ```
 
-## 3. Launch sample application  
+## 3. サンプルの起動  
 
 ```
 npm start
 ```
 
-## 4. Execution result  
+## 4. 実行結果  
 
 ![twoway](https://user-images.githubusercontent.com/2668146/44942338-37cd8080-ade9-11e8-988d-b64aa18fa295.gif)
 
-# Sample source
+# サンプルソース
 
 ## src/app/custom-list.component.ts
 
@@ -65,10 +65,10 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 })
 export class CustomListComponent implements ControlValueAccessor {
 
-  /** Selected Value */
+  /** 選択値 */
   value: number = 0;
 
-  /** Display List */
+  /** 表示リスト */
   list: number[] = [1, 2, 3, 4, 5];
 
   /** OnChange */
@@ -99,7 +99,7 @@ export class CustomListComponent implements ControlValueAccessor {
 
 
   /**
-   * Change Value
+   * 選択値変更処理
    * @param num
    */
   changeValue(num: number): void {
