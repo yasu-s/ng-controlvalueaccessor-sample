@@ -8,9 +8,9 @@ ngModelを利用しない双方向バインディングについては以下の�
 
 # 実行環境
 
-* Node.js 8.9.x
-* TypeScript 2.9.x
-* Angular 6.1.x
+* Node.js 10.x
+* TypeScript 3.1.x
+* Angular 7.0.x
 
 # 動作確認  
 
